@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Play by 'mail' version of Roborally"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "pydantic>=2.11.7",
+]
 
 [dependency-groups]
 dev = [
@@ -23,3 +25,6 @@ target-version = "py312"
 [tool.ruff.lint]
 ignore = ["TC001", "TC002", "TC003", "TC006"]
 
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

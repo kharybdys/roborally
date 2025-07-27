@@ -1,6 +1,6 @@
 import pytest as pytest
 
-from game.direction import Direction
+from roborally.game.direction import Direction
 
 
 @pytest.mark.parametrize(

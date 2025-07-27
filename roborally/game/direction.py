@@ -19,3 +19,17 @@ class Direction(Enum):
         my_idx = turn_order.index(self)
         new_idx = (my_idx + turns) % len(turn_order)
         return turn_order[new_idx]
+
+    def next_coords(self, x: int, y: int) -> tuple[int, int]:
+        """Returns the resulting coordinates if we would make one step in direction (self) given x, y as start coordinates."""
+        match self:
+            case Direction.NORTH:
+                return x - 1, y
+            case Direction.SOUTH:
+                return x + 1, y
+            case Direction.WEST:
+                return x, y - 1
+            case Direction.EAST:
+                return x, y + 1
+            case _:
+                raise ValueError(f"Unsupported direction {self}")
