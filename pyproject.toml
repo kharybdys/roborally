@@ -9,4 +9,16 @@ dependencies = []
 [dependency-groups]
 dev = [
     "pytest>=8.4.1",
+    "ruff>=0.12.5",
 ]
+
+[tool.ruff]
+line-length = 120
+fix = false
+
+# Assume Python 3.12
+target-version = "py312"
+
+[tool.ruff.lint]
+ignore = ["TC001", "TC002", "TC003", "TC006"]
+
