@@ -2,13 +2,13 @@ from typing import Literal, Self
 
 from pydantic import BaseModel
 
+from roborally.game.board.coord import Coord
 from roborally.game.direction import Direction
 
 
 class BaseElement(BaseModel):
     discriminator: str
-    _x: int = -1
-    _y: int = -1
+    _coords: Coord = Coord(x=-1, y=-1)
     _neighbours: dict[Direction, Self] = {}
 
     def add_neighbour(self, neighbour: Self, direction: Direction):

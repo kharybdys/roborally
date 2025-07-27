@@ -1,9 +1,9 @@
+from roborally.game.board.coord import Coord
 from roborally.game.commands.base import BaseCommand
 
 
 class BotArrivesAt(BaseCommand):
-    new_x: int
-    new_y: int
+    new: Coord
 
     def process(self):
         pass

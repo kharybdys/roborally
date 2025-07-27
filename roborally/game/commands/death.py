@@ -1,9 +1,9 @@
+from roborally.game.board.coord import Coord
 from roborally.game.commands.base import BaseCommand
 
 
 class BotDies(BaseCommand):
-    died_at_x: int
-    died_at_y: int
+    died_at: Coord
 
     def process(self):
         pass

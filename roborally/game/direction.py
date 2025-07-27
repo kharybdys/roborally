@@ -1,6 +1,8 @@
 from enum import Enum
 from typing import Self
 
+from roborally.game.board.coord import Coord
+
 
 class Direction(Enum):
     NORTH = "NORTH"
@@ -20,16 +22,16 @@ class Direction(Enum):
         new_idx = (my_idx + turns) % len(turn_order)
         return turn_order[new_idx]
 
-    def next_coords(self, x: int, y: int) -> tuple[int, int]:
+    def next_coords(self, current: Coord) -> Coord:
         """Returns the resulting coordinates if we would make one step in direction (self) given x, y as start coordinates."""
         match self:
-            case Direction.NORTH:
-                return x - 1, y
-            case Direction.SOUTH:
-                return x + 1, y
             case Direction.WEST:
-                return x, y - 1
+                return Coord(x=current.x - 1, y=current.y)
             case Direction.EAST:
-                return x, y + 1
+                return Coord(x=current.x + 1, y=current.y)
+            case Direction.NORTH:
+                return Coord(x=current.x, y=current.y - 1)
+            case Direction.SOUTH:
+                return Coord(x=current.x, y=current.y + 1)
             case _:
                 raise ValueError(f"Unsupported direction {self}")
