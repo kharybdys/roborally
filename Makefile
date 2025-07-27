@@ -1,5 +1,5 @@
 test:
-	uv run pytest
+	uv run --isolated pytest
 
 check:
 	uv run ty check
