@@ -5,7 +5,9 @@ import pytest
 from roborally.game.board.coord import Coord
 from roborally.game.board.board import Board
 from roborally.game.board.calculate_move import calculate_move
+from roborally.game.board.elements.base import Hole
 from roborally.game.commands.death import BotDies
+from roborally.game.commands.movement import BotArrivesAt
 from roborally.game.direction import Direction
 
 
@@ -17,6 +19,12 @@ def three_by_three_empty_board(data_dir) -> Board:
     with open(data_dir / "three_by_three_empty_board.json") as f:
         board = Board.model_validate_json(f.read())
     return board
+
+
+@pytest.fixture
+def three_by_three_empty_board_with_hole(three_by_three_empty_board: Board) -> Board:
+    three_by_three_empty_board.elements[Coord(x=1, y=1)] = Hole()
+    return three_by_three_empty_board
 
 
 @pytest.mark.parametrize(
@@ -50,5 +58,70 @@ def test_falls_off_board(
         steps=steps,
     )
     assert len(commands) == 1
-    assert isinstance(commands[0], BotDies), "bot died"
-    assert commands[0].died_at == death
+    command = commands[0]
+    assert isinstance(command, BotDies), "bot died"
+    assert command.died_at == death
+
+
+@pytest.mark.parametrize(
+    ("start", "movement_direction", "steps", "death"),
+    [
+        (Coord(x=1, y=2), Direction.NORTH, 2, Coord(x=1, y=1)),
+        (Coord(x=1, y=2), Direction.NORTH, 1, Coord(x=1, y=1)),
+        (Coord(x=0, y=1), Direction.EAST, 2, Coord(x=1, y=1)),
+        (Coord(x=0, y=1), Direction.EAST, 1, Coord(x=1, y=1)),
+        (Coord(x=1, y=0), Direction.SOUTH, 2, Coord(x=1, y=1)),
+        (Coord(x=1, y=0), Direction.SOUTH, 1, Coord(x=1, y=1)),
+        (Coord(x=2, y=1), Direction.WEST, 2, Coord(x=1, y=1)),
+        (Coord(x=2, y=1), Direction.WEST, 1, Coord(x=1, y=1)),
+    ],
+)
+def test_falls_in_hole(
+    three_by_three_empty_board_with_hole: Board,
+    start: Coord,
+    movement_direction: Direction,
+    steps: int,
+    death: Coord,
+):
+    commands = calculate_move(
+        board=three_by_three_empty_board_with_hole,
+        start=start,
+        movement_direction=movement_direction,
+        steps=steps,
+    )
+    assert len(commands) == 1
+    command = commands[0]
+    assert isinstance(command, BotDies), "bot died"
+    assert command.died_at == death
+
+
+@pytest.mark.parametrize(
+    ("start", "movement_direction", "steps", "ends_at"),
+    [
+        (Coord(x=1, y=2), Direction.NORTH, 2, Coord(x=1, y=0)),
+        (Coord(x=2, y=1), Direction.NORTH, 1, Coord(x=2, y=0)),
+        (Coord(x=0, y=1), Direction.EAST, 2, Coord(x=2, y=1)),
+        (Coord(x=1, y=2), Direction.EAST, 1, Coord(x=2, y=2)),
+        (Coord(x=1, y=0), Direction.SOUTH, 2, Coord(x=1, y=2)),
+        (Coord(x=2, y=1), Direction.SOUTH, 1, Coord(x=2, y=2)),
+        (Coord(x=2, y=1), Direction.WEST, 2, Coord(x=0, y=1)),
+        (Coord(x=1, y=2), Direction.WEST, 1, Coord(x=0, y=2)),
+    ],
+)
+def test_basic_movement(
+    three_by_three_empty_board: Board,
+    start: Coord,
+    movement_direction: Direction,
+    steps: int,
+    ends_at: Coord,
+):
+    commands = calculate_move(
+        board=three_by_three_empty_board,
+        start=start,
+        movement_direction=movement_direction,
+        steps=steps,
+    )
+    assert len(commands) == 1
+    command = commands[0]
+    assert isinstance(command, BotArrivesAt), "bot arrived at"
+    assert command.arrived_at == ends_at
