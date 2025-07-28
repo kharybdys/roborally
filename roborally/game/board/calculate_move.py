@@ -19,4 +19,4 @@ def calculate_move(
         if board_element.instant_death:
             return [BotDies(died_at=new_coords)]
         current = new_coords
-    return [BotArrivesAt(new=current)]
+    return [BotArrivesAt(arrived_at=current)]

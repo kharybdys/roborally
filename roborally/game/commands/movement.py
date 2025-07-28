@@ -3,7 +3,7 @@ from roborally.game.commands.base import BaseCommand
 
 
 class BotArrivesAt(BaseCommand):
-    new: Coord
+    arrived_at: Coord
 
     def process(self):
         pass
