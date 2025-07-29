@@ -30,7 +30,7 @@ class Board(BaseModel):
             for key, item in value.items():
                 if isinstance(key, str):
                     try:
-                        new_key = Coord.parse_as_dict_key(key)
+                        new_key = Coord.model_validate_json(key)
                     except Exception as e:
                         LOGGER.warning(f"Problem transforming {key} to Coord", exc_info=e)
                         raise
