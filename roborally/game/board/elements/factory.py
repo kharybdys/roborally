@@ -21,4 +21,3 @@ BoardElements: TypeAlias = Annotated[
     | RepairAndOption,
     Discriminator("discriminator"),
 ]
-DEFAULT_HOLE_ELEMENT = Hole()

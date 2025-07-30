@@ -1,0 +1,34 @@
+{
+  "elements": {
+    "{\"x\":0,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": ["EAST"]
+    },
+    "{\"x\":0,\"y\":1}": {
+      "discriminator": "EMPTY",
+      "walls": ["NORTH"]
+    },
+    "{\"x\":0,\"y\":2}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":1,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": ["WEST"]
+    },
+    "{\"x\":1,\"y\":1}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":1,\"y\":2}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":2,\"y\":0}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":2,\"y\":1}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":2,\"y\":2}": {
+      "discriminator": "EMPTY"
+    }
+  }
+}

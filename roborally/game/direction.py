@@ -1,4 +1,5 @@
 from enum import Enum
+from functools import cached_property
 from typing import Self
 
 from roborally.game.board.coord import Coord
@@ -13,6 +14,10 @@ class Direction(Enum):
     @classmethod
     def turn_order(cls) -> list[Self]:
         return [cls.NORTH, cls.EAST, cls.SOUTH, cls.WEST]
+
+    @cached_property
+    def opposite(self) -> Self:
+        return self.turn_clockwise(2)
 
     def turn_clockwise(self, turns: int) -> Self:
         if turns > 4 or turns < -4:

@@ -1,0 +1,36 @@
+{
+  "elements": {
+    "{\"x\":0,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": ["SOUTH", "EAST"]
+    },
+    "{\"x\":0,\"y\":1}": {
+      "discriminator": "EMPTY",
+      "walls": ["NORTH", "EAST"]
+    },
+    "{\"x\":0,\"y\":2}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":1,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": ["WEST", "SOUTH"]
+    },
+    "{\"x\":1,\"y\":1}": {
+      "discriminator": "HOLE"
+    },
+    "{\"x\":1,\"y\":2}": {
+      "discriminator": "EMPTY",
+      "walls": ["NORTH"]
+    },
+    "{\"x\":2,\"y\":0}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":2,\"y\":1}": {
+      "discriminator": "EMPTY",
+      "walls": ["WEST"]
+    },
+    "{\"x\":2,\"y\":2}": {
+      "discriminator": "EMPTY"
+    }
+  }
+}

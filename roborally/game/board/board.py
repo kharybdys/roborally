@@ -1,11 +1,12 @@
 import logging
-from typing import Any
+from typing import Any, Self
 
-from pydantic import BaseModel, field_validator, ConfigDict
+from pydantic import BaseModel, field_validator, ConfigDict, model_validator
 from pydantic_core.core_schema import ValidatorFunctionWrapHandler
 
 from roborally.game.board.coord import Coord
-from roborally.game.board.elements.factory import BoardElements, DEFAULT_HOLE_ELEMENT
+from roborally.game.board.elements.factory import BoardElements
+from roborally.game.board.elements.base import DEFAULT_HOLE_ELEMENT
 from roborally.game.direction import Direction
 
 LOGGER = logging.getLogger(__name__)
@@ -42,6 +43,15 @@ class Board(BaseModel):
             return handler(result)
         else:
             return handler(value)
+
+    @model_validator(mode="after")
+    def check_walls_reciprocate(self) -> Self:
+        for coord, element in self.elements.items():
+            for wall_direction in element.walls:
+                neighbour = element.get_neighbour(wall_direction)
+                if not neighbour.instant_death and wall_direction.opposite not in neighbour.walls:
+                    raise ValueError(f"Wall in direction {wall_direction} on coordinates {coord} does not reciprocate")
+        return self
 
     def element_at(self, coords: Coord) -> BoardElements:
         return self.elements.get(coords, DEFAULT_HOLE_ELEMENT)
