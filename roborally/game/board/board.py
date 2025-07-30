@@ -1,7 +1,7 @@
 import logging
 from typing import Any
 
-from pydantic import BaseModel, field_validator
+from pydantic import BaseModel, field_validator, ConfigDict
 from pydantic_core.core_schema import ValidatorFunctionWrapHandler
 
 from roborally.game.board.coord import Coord
@@ -12,6 +12,8 @@ LOGGER = logging.getLogger(__name__)
 
 
 class Board(BaseModel):
+    model_config = ConfigDict(frozen=True)
+
     elements: dict[Coord, BoardElements]
 
     def model_post_init(self, context: Any, /):

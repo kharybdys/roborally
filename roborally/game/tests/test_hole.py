@@ -5,26 +5,12 @@ import pytest
 from roborally.game.board.coord import Coord
 from roborally.game.board.board import Board
 from roborally.game.board.calculate_move import calculate_move
-from roborally.game.board.elements.base import Hole
 from roborally.game.commands.death import BotDies
 from roborally.game.commands.movement import BotArrivesAt
 from roborally.game.direction import Direction
 
 
 LOGGER = logging.getLogger(__name__)
-
-
-@pytest.fixture
-def three_by_three_empty_board(data_dir) -> Board:
-    with open(data_dir / "three_by_three_empty_board.json") as f:
-        board = Board.model_validate_json(f.read())
-    return board
-
-
-@pytest.fixture
-def three_by_three_empty_board_with_hole(three_by_three_empty_board: Board) -> Board:
-    three_by_three_empty_board.elements[Coord(x=1, y=1)] = Hole()
-    return three_by_three_empty_board
 
 
 @pytest.mark.parametrize(
@@ -44,15 +30,16 @@ def three_by_three_empty_board_with_hole(three_by_three_empty_board: Board) -> B
         (Coord(x=0, y=2), Direction.WEST, 1, Coord(x=-1, y=2)),
     ],
 )
+@pytest.mark.parametrize("board_name", ["three_by_three_empty_board"])
 def test_falls_off_board(
-    three_by_three_empty_board: Board,
+    board: Board,
     start: Coord,
     movement_direction: Direction,
     steps: int,
     death: Coord,
 ):
     commands = calculate_move(
-        board=three_by_three_empty_board,
+        board=board,
         start=start,
         movement_direction=movement_direction,
         steps=steps,
@@ -76,15 +63,16 @@ def test_falls_off_board(
         (Coord(x=2, y=1), Direction.WEST, 1, Coord(x=1, y=1)),
     ],
 )
+@pytest.mark.parametrize("board_name", ["three_by_three_with_hole_board"])
 def test_falls_in_hole(
-    three_by_three_empty_board_with_hole: Board,
+    board: Board,
     start: Coord,
     movement_direction: Direction,
     steps: int,
     death: Coord,
 ):
     commands = calculate_move(
-        board=three_by_three_empty_board_with_hole,
+        board=board,
         start=start,
         movement_direction=movement_direction,
         steps=steps,
@@ -108,15 +96,16 @@ def test_falls_in_hole(
         (Coord(x=1, y=2), Direction.WEST, 1, Coord(x=0, y=2)),
     ],
 )
+@pytest.mark.parametrize("board_name", ["three_by_three_empty_board"])
 def test_basic_movement(
-    three_by_three_empty_board: Board,
+    board: Board,
     start: Coord,
     movement_direction: Direction,
     steps: int,
     ends_at: Coord,
 ):
     commands = calculate_move(
-        board=three_by_three_empty_board,
+        board=board,
         start=start,
         movement_direction=movement_direction,
         steps=steps,
