@@ -15,6 +15,7 @@ LOGGER = logging.getLogger(__name__)
 @pytest.mark.parametrize(
     ("start", "movement_direction", "steps", "death"),
     [
+        # Will only just fall off the board
         (Coord(x=0, y=2), Direction.NORTH, 3, Coord(x=0, y=-1)),
         (Coord(x=1, y=1), Direction.NORTH, 2, Coord(x=1, y=-1)),
         (Coord(x=2, y=0), Direction.NORTH, 1, Coord(x=2, y=-1)),
@@ -27,6 +28,19 @@ LOGGER = logging.getLogger(__name__)
         (Coord(x=2, y=0), Direction.WEST, 3, Coord(x=-1, y=0)),
         (Coord(x=1, y=1), Direction.WEST, 2, Coord(x=-1, y=1)),
         (Coord(x=0, y=2), Direction.WEST, 1, Coord(x=-1, y=2)),
+        # Will very significantly fall of the board - verify died_at doesn't increase
+        (Coord(x=0, y=0), Direction.NORTH, 2, Coord(x=0, y=-1)),
+        (Coord(x=0, y=0), Direction.NORTH, 3, Coord(x=0, y=-1)),
+        (Coord(x=0, y=0), Direction.NORTH, 4, Coord(x=0, y=-1)),
+        (Coord(x=0, y=0), Direction.WEST, 2, Coord(x=-1, y=0)),
+        (Coord(x=0, y=0), Direction.WEST, 3, Coord(x=-1, y=0)),
+        (Coord(x=0, y=0), Direction.WEST, 4, Coord(x=-1, y=0)),
+        (Coord(x=2, y=2), Direction.SOUTH, 2, Coord(x=2, y=3)),
+        (Coord(x=2, y=2), Direction.SOUTH, 3, Coord(x=2, y=3)),
+        (Coord(x=2, y=2), Direction.SOUTH, 4, Coord(x=2, y=3)),
+        (Coord(x=2, y=2), Direction.EAST, 2, Coord(x=3, y=2)),
+        (Coord(x=2, y=2), Direction.EAST, 3, Coord(x=3, y=2)),
+        (Coord(x=2, y=2), Direction.EAST, 4, Coord(x=3, y=2)),
     ],
 )
 @pytest.mark.parametrize("board_name", ["three_by_three_empty_board"])
