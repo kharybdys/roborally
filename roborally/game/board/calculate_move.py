@@ -2,7 +2,7 @@ from roborally.game.board.board import Board
 from roborally.game.board.coord import Coord
 from roborally.game.commands.base import BaseCommand
 from roborally.game.commands.death import BotDies
-from roborally.game.commands.movement import BotArrivesAt
+from roborally.game.commands.movement import BotArrivesAt, BotHitsWall
 from roborally.game.direction import Direction
 
 
@@ -13,10 +13,17 @@ def calculate_move(
     steps: int,
 ) -> list[BaseCommand]:
     current = start
+
     for _ in range(steps):
+        current_board_element = board.element_at(current)
+        if movement_direction in current_board_element.walls:
+            return [BotHitsWall(wall_at=current, wall_direction=movement_direction), BotArrivesAt(arrived_at=current)]
+
         new_coords = movement_direction.next_coords(current)
-        board_element = board.element_at(new_coords)
-        if board_element.instant_death:
+        new_board_element = board.element_at(new_coords)
+        if new_board_element.instant_death:
             return [BotDies(died_at=new_coords)]
+
         current = new_coords
+
     return [BotArrivesAt(arrived_at=current)]

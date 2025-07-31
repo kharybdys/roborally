@@ -1,0 +1,224 @@
+{
+  "elements": {
+    "{\"x\":0,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH",
+        "EAST"
+      ]
+    },
+    "{\"x\":0,\"y\":1}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH",
+        "EAST"
+      ]
+    },
+    "{\"x\":0,\"y\":2}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "EAST"
+      ]
+    },
+    "{\"x\":0,\"y\":3}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "EAST"
+      ]
+    },
+    "{\"x\":0,\"y\":4}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH",
+        "EAST"
+      ]
+    },
+    "{\"x\":0,\"y\":5}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH",
+        "EAST"
+      ]
+    },
+    "{\"x\":1,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH",
+        "WEST"
+      ]
+    },
+    "{\"x\":1,\"y\":1}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH",
+        "WEST"
+      ]
+    },
+    "{\"x\":1,\"y\":2}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "WEST"
+      ]
+    },
+    "{\"x\":1,\"y\":3}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "WEST"
+      ]
+    },
+    "{\"x\":1,\"y\":4}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH",
+        "WEST"
+      ]
+    },
+    "{\"x\":1,\"y\":5}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH",
+        "WEST"
+      ]
+    },
+    "{\"x\":2,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH"
+      ]
+    },
+    "{\"x\":2,\"y\":1}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH"
+      ]
+    },
+    "{\"x\":2,\"y\":2}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":2,\"y\":3}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":2,\"y\":4}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH"
+      ]
+    },
+    "{\"x\":2,\"y\":5}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH"
+      ]
+    },
+    "{\"x\":3,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH"
+      ]
+    },
+    "{\"x\":3,\"y\":1}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH"
+      ]
+    },
+    "{\"x\":3,\"y\":2}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":3,\"y\":3}": {
+      "discriminator": "EMPTY"
+    },
+    "{\"x\":3,\"y\":4}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH"
+      ]
+    },
+    "{\"x\":3,\"y\":5}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH"
+      ]
+    },
+    "{\"x\":4,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH",
+        "EAST"
+      ]
+    },
+    "{\"x\":4,\"y\":1}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH",
+        "EAST"
+      ]
+    },
+    "{\"x\":4,\"y\":2}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "EAST"
+      ]
+    },
+    "{\"x\":4,\"y\":3}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "EAST"
+      ]
+    },
+    "{\"x\":4,\"y\":4}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH",
+        "EAST"
+      ]
+    },
+    "{\"x\":4,\"y\":5}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH",
+        "EAST"
+      ]
+    },
+    "{\"x\":5,\"y\":0}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH",
+        "WEST"
+      ]
+    },
+    "{\"x\":5,\"y\":1}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH",
+        "WEST"
+      ]
+    },
+    "{\"x\":5,\"y\":2}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "WEST"
+      ]
+    },
+    "{\"x\":5,\"y\":3}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "WEST"
+      ]
+    },
+    "{\"x\":5,\"y\":4}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "SOUTH",
+        "WEST"
+      ]
+    },
+    "{\"x\":5,\"y\":5}": {
+      "discriminator": "EMPTY",
+      "walls": [
+        "NORTH",
+        "WEST"
+      ]
+    }
+  }
+}
