@@ -12,6 +12,15 @@ def calculate_move(
     movement_direction: Direction,
     steps: int,
 ) -> list[BaseCommand]:
+    # Handle negative steps by adjusting our parameters:
+    if steps < 0:
+        return calculate_move(
+            board=board,
+            start=start,
+            movement_direction=movement_direction.opposite,
+            steps=-1 * steps,
+        )
+
     current = start
 
     for _ in range(steps):

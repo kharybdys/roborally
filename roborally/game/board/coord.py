@@ -18,3 +18,6 @@ class Coord(BaseModel):
     # This determines how Coord looks like as dict key in a model dump action
     def __str__(self):
         return self.model_dump_json()
+
+    def __repr__(self):
+        return f"({self.x}, {self.y})"
